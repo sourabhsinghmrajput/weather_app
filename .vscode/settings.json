@@ -1,0 +1,19 @@
+{
+  "files.exclude": {
+    ".dart_tool": true,
+    ".idea": true,
+    ".vscode": true,
+    "ios": true,
+    "test": true,
+    "web": true,
+    ".flutter-plugins-dependencies": true,
+    "README.md": true,
+    "pubspec.lock": true,
+    "clima_app.iml": true,
+    ".packages": true,
+    ".metadata": true,
+    ".gitignore": true,
+    ".flutter-plugins": true,
+    "lib\\generated_plugin_registrant.dart": true
+  }
+}
