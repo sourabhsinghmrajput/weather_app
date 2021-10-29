@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
+const kmyallcolor = Colors.white;    //All Colors.  
+
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 100.0,
+  fontWeight: FontWeight.w600,
+  color: kmyallcolor,
 );
 
 const kMessageTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
-  fontSize: 60.0,
+  fontSize: 25.0,
+  color: kmyallcolor,
 );
 
 const kButtonTextStyle = TextStyle(
   fontSize: 30.0,
   fontFamily: 'Spartan MB',
+  // color: kmyallcolor,
 );
 
 const kConditionTextStyle = TextStyle(

@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+//2.Fetches and Returns api data.
+
 class NetworkHelper {
   NetworkHelper({this.url});
 

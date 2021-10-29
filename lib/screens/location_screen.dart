@@ -48,80 +48,107 @@ class _LocationScreenState extends State<LocationScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/location_background.jpg'),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0.2, 1.0],
+            colors: <Color>[
+              Color(0xff002fff),
+              Color(0xff00f4ff),
+            ],
           ),
         ),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    TextButton(
-                      onPressed: () async {
-                        var weatherData = await weather.getLocationWeather();
-                        updateUi(weatherData);
-                      },
-                      child: Icon(
-                        Icons.near_me,
-                        color: Colors.white,
-                        size: 50.0,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        var typedcityName = await Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return CityScreen();
-                        }));
-                        print(typedcityName);
-                        if (typedcityName != null) {
-                          var weatherData =
-                              await weather.getCityWeather(typedcityName);
-                          updateUi(weatherData);
-                        }
-                      },
-                      child: Icon(
-                        Icons.location_city,
-                        color: Colors.white,
-                        size: 50.0,
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 15.0),
-                  child: Column(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        '$absolutetemp \u2103',
-                        style: kTempTextStyle,
+                      TextButton(
+                        onPressed: () async {
+                          var weatherData = await weather.getLocationWeather();
+                          updateUi(weatherData);
+                        },
+                        child: Icon(
+                          Icons.near_me,
+                          color: kmyallcolor,
+                          size: 50.0,
+                        ),
                       ),
-                      Text(
-                        '$weatherIcon',
-                        style: kConditionTextStyle,
+                      TextButton(
+                        onPressed: () async {
+                          var typedcityName = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return CityScreen();
+                              },
+                            ),
+                          );
+                          print(typedcityName);
+                          if (typedcityName != null) {
+                            var weatherData =
+                                await weather.getCityWeather(typedcityName);
+                            updateUi(weatherData);
+                          }
+                        },
+                        child: Icon(
+                          Icons.location_city,
+                          color: kmyallcolor,
+                          size: 50.0,
+                        ),
                       ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 15.0),
-                  child: Text(
-                    "$weatherMessage in $cityName",
-                    textAlign: TextAlign.right,
-                    style: kMessageTextStyle,
+                  SizedBox(
+                    height: 80,
                   ),
-                ),
-              ],
-            ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 18),
+                    child: Card(
+                      elevation: 0.5,
+                      color: Colors.white.withOpacity(0.05),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), //20
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 40, vertical: 40), //40
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      '$absolutetemp\u2103', //'$absolutetemp \u2103' for deggrree celcius sign,
+                                      style: kTempTextStyle,
+                                    ),
+                                    Text(
+                                      "$cityName",
+                                      textAlign: TextAlign.right,
+                                      style: kMessageTextStyle,
+                                    ),
+                                    // Text(
+                                    //   '$weatherIcon',
+                                    //   style: kConditionTextStyle,
+                                    // ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),  
+            ],
           ),
         ),
       ),

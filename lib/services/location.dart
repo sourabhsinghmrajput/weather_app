@@ -1,6 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 
-const apikey = '4f3bb31f297ca5c80becfac70433cdac';
+//1. Gives Location only with latitude and longitude.
 
 class Location {
   var longitude;

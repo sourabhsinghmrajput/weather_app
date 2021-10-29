@@ -1,6 +1,9 @@
 import 'package:clima_app/services/location.dart';
 import 'package:clima_app/services/networking.dart';
 
+//3. Takes location and passes it to network class and gets wheather data from it.
+
+const apikey = '4f3bb31f297ca5c80becfac70433cdac';
 const openweatherMapUrl = 'http://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
@@ -19,7 +22,8 @@ class WeatherModel {
 
   Future<dynamic> getCityWeather(String cityName) async {
     NetworkHelper networkHelper = NetworkHelper(
-        url: '$openweatherMapUrl?q=$cityName=&appid=$apikey&units=metric');
+        url:
+            '$openweatherMapUrl?q=${cityName.toString()}=&appid=$apikey&units=metric');
   }
 
   String getWeatherIcon(int condition) {
